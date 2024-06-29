@@ -39,7 +39,7 @@ mod tests {
         let db = client.database("some_db");
         let coll = db.collection("some-coll");
 
-        let insert_one_result = coll.insert_one(bson::doc! { "x": 42 }, None).await.unwrap();
+        let insert_one_result = coll.insert_one(bson::doc! { "x": 42 }).await.unwrap();
         assert!(!insert_one_result
             .inserted_id
             .as_object_id()
@@ -48,7 +48,7 @@ mod tests {
             .is_empty());
 
         let find_one_result: bson::Document = coll
-            .find_one(bson::doc! { "x": 42 }, None)
+            .find_one(bson::doc! { "x": 42 })
             .await
             .unwrap()
             .unwrap();
